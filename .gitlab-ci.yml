@@ -1,0 +1,90 @@
+---
+include:
+  - project: ci-templates7452641/gitlab-ci-templates
+    ref: v1.2.1
+    file: /lint/commit.yml
+  - project: ci-templates7452641/gitlab-ci-templates
+    ref: v1.2.1
+    file: /lint/markdown.yml
+    inputs:
+      path: README.md examples/default/README.md
+  - project: ci-templates7452641/gitlab-ci-templates
+    ref: v1.2.1
+    file: /security/gitleaks.yml
+  - project: ci-templates7452641/gitlab-ci-templates
+    ref: v1.2.1
+    file: /validate/tflint.yml
+  - project: ci-templates7452641/gitlab-ci-templates
+    ref: v1.2.1
+    file: /test/renovate.yml
+  - project: ci-templates7452641/gitlab-ci-templates
+    ref: v1.2.1
+    file: /test/trivy.yml
+  - project: ci-templates7452641/gitlab-ci-templates
+    ref: v1.2.1
+    file: /release/semantic.yml
+  - template: Jobs/SAST-IaC.latest.gitlab-ci.yml
+  - template: Terraform/Base.latest.gitlab-ci.yml
+  - template: Terraform/Module-Base.gitlab-ci.yml
+  - template: Workflows/MergeRequest-Pipelines.gitlab-ci.yml
+
+stages:
+  - lint
+  - security
+  - validate
+  - test
+  - release
+  - deploy
+
+.setup:
+  cache:
+    - key: ${CI_COMMIT_REF_SLUG}-terraform
+      paths:
+        - .terraform/
+
+commit:
+  extends: .lint:commit
+
+markdown:
+  extends: .lint:markdown
+
+gitleaks:
+  extends: .security:gitleaks
+
+terraform:fmt:
+  extends: .terraform:fmt
+
+terraform:validate:
+  extends: .terraform:validate
+  cache:
+    - !reference [.setup, cache]
+
+tflint:
+  extends: .tflint
+  needs:
+    - terraform:validate
+  cache:
+    - !reference [.setup, cache]
+
+renovate:config-validator:
+  extends: .renovate:config-validator
+
+trivy:
+  extends: .trivy
+
+semantic:
+  extends: .release:semantic
+  script:
+    - npm install --save-dev @semantic-release/exec
+    - !reference [.release:semantic, script]
+  artifacts:
+    reports:
+      dotenv: version.env
+
+terraform-module:deploy:
+  extends: .terraform-module:deploy
+  needs:
+    - semantic
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      allow_failure: true
