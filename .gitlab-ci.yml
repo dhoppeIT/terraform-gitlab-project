@@ -1,26 +1,26 @@
 ---
 include:
-  - project: ci-templates7452641/gitlab-ci-templates
+  - project: ci-templates-48151/gitlab-ci-templates
     ref: v1.2.4
     file: /lint/commit.yml
-  - project: ci-templates7452641/gitlab-ci-templates
+  - project: ci-templates-48151/gitlab-ci-templates
     ref: v1.2.4
     file: /lint/markdown.yml
     inputs:
       path: README.md examples/default/README.md
-  - project: ci-templates7452641/gitlab-ci-templates
+  - project: ci-templates-48151/gitlab-ci-templates
     ref: v1.2.4
     file: /security/gitleaks.yml
-  - project: ci-templates7452641/gitlab-ci-templates
+  - project: ci-templates-48151/gitlab-ci-templates
     ref: v1.2.4
     file: /validate/tflint.yml
-  - project: ci-templates7452641/gitlab-ci-templates
+  - project: ci-templates-48151/gitlab-ci-templates
     ref: v1.2.4
     file: /test/renovate.yml
-  - project: ci-templates7452641/gitlab-ci-templates
+  - project: ci-templates-48151/gitlab-ci-templates
     ref: v1.2.4
     file: /test/trivy.yml
-  - project: ci-templates7452641/gitlab-ci-templates
+  - project: ci-templates-48151/gitlab-ci-templates
     ref: v1.2.4
     file: /release/semantic.yml
   - template: Jobs/SAST-IaC.latest.gitlab-ci.yml
