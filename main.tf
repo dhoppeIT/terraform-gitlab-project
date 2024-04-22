@@ -21,7 +21,7 @@ resource "gitlab_project" "this" {
   container_registry_access_level                  = var.container_registry_access_level
   default_branch                                   = var.default_branch
   description                                      = var.description
-  emails_disabled                                  = var.emails_disabled
+  emails_enabled                                   = var.emails_enabled
   environments_access_level                        = var.environments_access_level
   external_authorization_classification_label      = var.external_authorization_classification_label
   feature_flags_access_level                       = var.feature_flags_access_level

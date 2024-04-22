@@ -25,13 +25,13 @@ module "gitlab_project" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | ~> 16.0 |
+| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | ~> 16.11 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | ~> 16.0 |
+| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | ~> 16.11 |
 
 ## Modules
 
@@ -69,7 +69,7 @@ No modules.
 | <a name="input_container_registry_access_level"></a> [container\_registry\_access\_level](#input\_container\_registry\_access\_level) | Set visibility of container registry, for this project | `string` | `"enabled"` | no |
 | <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | The default branch for the project | `string` | `"main"` | no |
 | <a name="input_description"></a> [description](#input\_description) | A description of the project | `string` | `null` | no |
-| <a name="input_emails_disabled"></a> [emails\_disabled](#input\_emails\_disabled) | Disable email notifications | `bool` | `false` | no |
+| <a name="input_emails_enabled"></a> [emails\_enabled](#input\_emails\_enabled) | Enable email notifications | `bool` | `true` | no |
 | <a name="input_environments_access_level"></a> [environments\_access\_level](#input\_environments\_access\_level) | Set the environments access level | `string` | `"enabled"` | no |
 | <a name="input_external_authorization_classification_label"></a> [external\_authorization\_classification\_label](#input\_external\_authorization\_classification\_label) | The classification label for the project | `string` | `null` | no |
 | <a name="input_feature_flags_access_level"></a> [feature\_flags\_access\_level](#input\_feature\_flags\_access\_level) | Set the feature flags access level | `string` | `"enabled"` | no |

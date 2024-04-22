@@ -160,10 +160,10 @@ variable "description" {
   description = "A description of the project"
 }
 
-variable "emails_disabled" {
+variable "emails_enabled" {
   type        = bool
-  default     = false
-  description = "Disable email notifications"
+  default     = true
+  description = "Enable email notifications"
 }
 
 variable "environments_access_level" {
