@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/compare/v1.0.2...v1.1.0) (2024-04-22)
+
+
+### Features
+
+* Update GitLab provider to version 16.11 ([81bdff9](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/commit/81bdff97cdeb3435ef1a4b7d8ddd59eff8b4c7fe))
+
 ## [1.0.2](https://gitlab.com/terraform-child-modules1/terraform-gitlab-project/compare/v1.0.1...v1.0.2) (2024-2-16)
 
 
