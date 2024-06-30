@@ -74,9 +74,6 @@ trivy:
 
 semantic:
   extends: .release:semantic
-  script:
-    - npm install --save-dev @semantic-release/exec
-    - !reference [.release:semantic, script]
   artifacts:
     reports:
       dotenv: version.env
