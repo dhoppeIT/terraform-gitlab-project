@@ -5,7 +5,7 @@ default_install_hook_types:
 
 repos:
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.94.1
+    rev: v1.95.0
     hooks:
       - id: terraform_fmt
         args:
@@ -46,7 +46,7 @@ repos:
         stages: ['commit-msg']
 
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.18.4
+    rev: v8.19.1
     hooks:
       - id: gitleaks
         stages: ['pre-commit']
