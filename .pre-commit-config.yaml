@@ -36,7 +36,11 @@ repos:
           - --args=--only=terraform_unused_required_providers
           - --args=--only=terraform_workspace_remote
         stages: ['pre-commit']
-      - id: terraform_tfsec
+      - id: terraform_trivy
+        args:
+          - --args=--ignorefile=.trivyignore.yaml
+          - --args=--report=summary
+          - --args=--skip-dirs='**/.terraform'
         stages: ['pre-commit']
 
   - repo: https://github.com/compilerla/conventional-pre-commit
