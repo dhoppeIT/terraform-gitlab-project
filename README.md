@@ -150,7 +150,7 @@ No modules.
 
 ## Authors
 
-Created and maintained by [Dennis Hoppe](https://gitlab.com/dhoppe).
+Created and maintained by [Dennis Hoppe](https://gitlab.com/dhoppeit).
 
 ## License
 
