@@ -5,6 +5,10 @@ module.exports = {
       0,
       'always'
     ],
+    'header-max-length': [
+      0,
+      'always'
+    ],
     'subject-case': [
       1,
       'always',
