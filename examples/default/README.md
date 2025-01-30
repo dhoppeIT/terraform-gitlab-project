@@ -17,13 +17,13 @@ terraform apply
 :warning: This example may create resources that cost money. Execute the
 command `terraform destroy` when the resources are no longer needed.
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | ~> 16.0 |
+| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | ~> 17.0 |
 
 ## Providers
 
@@ -55,4 +55,4 @@ No inputs.
 | <a name="output_gitlab_project_runners_token"></a> [gitlab\_project\_runners\_token](#output\_gitlab\_project\_runners\_token) | Registration token to use during runner setup |
 | <a name="output_gitlab_project_ssh_url_to_repo"></a> [gitlab\_project\_ssh\_url\_to\_repo](#output\_gitlab\_project\_ssh\_url\_to\_repo) | URL that can be provided to git clone to clone the project |
 | <a name="output_gitlab_project_web_url"></a> [gitlab\_project\_web\_url](#output\_gitlab\_project\_web\_url) | URL that can be used to find the project in a browser |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
