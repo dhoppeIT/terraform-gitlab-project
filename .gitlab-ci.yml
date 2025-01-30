@@ -31,56 +31,67 @@ include:
 stages:
   - lint
   - security
-  - validate
   - test
+  - validate
   - release
   - deploy
 
-.setup:
-  cache:
-    - key: ${CI_COMMIT_REF_SLUG}-terraform
-      paths:
-        - .terraform/
+variables:
+  IGNORE_TF_DEPRECATION_WARNING: true
 
+.terraform: &terraform-rules
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - "**/*.hcl"
+        - "**/*.tf"
+    - if: $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
+# lint
 commit:
   extends: .lint:commit
 
 markdown:
   extends: .lint:markdown
 
+# security
 gitleaks:
   extends: .security:gitleaks
 
-terraform:fmt:
-  extends: .terraform:fmt
-
-terraform:validate:
-  extends: .terraform:validate
-  cache:
-    - !reference [.setup, cache]
-
-tflint:
-  extends: .tflint
-  needs:
-    - terraform:validate
-  cache:
-    - !reference [.setup, cache]
-
+# test
 renovate:config-validator:
   extends: .renovate:config-validator
 
 trivy:
   extends: .trivy
 
+# validate
+terraform:fmt:
+  extends: .terraform:fmt
+  <<: *terraform-rules
+
+terraform:validate:
+  extends: .terraform:validate
+  <<: *terraform-rules
+
+tflint:
+  extends: .tflint
+  dependencies:
+    - terraform:validate
+
+# release
 semantic:
   extends: .release:semantic
   artifacts:
     reports:
       dotenv: version.env
 
+# deploy
 terraform-module:deploy:
   extends: .terraform-module:deploy
-  needs:
+  dependencies:
     - semantic
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
