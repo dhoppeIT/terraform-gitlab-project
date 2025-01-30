@@ -11,10 +11,9 @@ repos:
         args:
           - --args=-diff
         stages: ['pre-commit']
-      - id: terraform_validate
-        stages: ['pre-commit']
       - id: terraform_docs
         args:
+          - --args=--html=false
           - --args=--lockfile=false
         stages: ['pre-commit']
       - id: terraform_tflint
@@ -41,6 +40,8 @@ repos:
           - --args=--ignorefile=.trivyignore.yaml
           - --args=--report=summary
           - --args=--skip-dirs='**/.terraform'
+        stages: ['pre-commit']
+      - id: terraform_validate
         stages: ['pre-commit']
 
   - repo: https://github.com/compilerla/conventional-pre-commit
