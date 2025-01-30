@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.2](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/compare/v1.1.1...v1.1.2) (2025-01-30)
+
+### Bug Fixes
+
+* **pre-commit:** Disable HTML tags ([8844f13](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/commit/8844f13dd244c5c2fe2cc43ad8f95ffd5bc1a09f))
+* **terraform:** Disable GitLab CI jobs until files have changed ([7736c1e](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/commit/7736c1eb3930ed062cf3603df2993f3ae21fef98))
+* **terraform:** Use correct version ([696bec2](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/commit/696bec2f2ada5c8298a878719d6a94ff469d49f6))
+* **trivy:** Add empty configuration ([bd2d717](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/commit/bd2d7174d5589b8ea2abe8cdb83a98e57fb77d4b))
+
 ## [1.1.1](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/compare/v1.1.0...v1.1.1) (2024-11-11)
 
 ### Bug Fixes
