@@ -224,7 +224,7 @@ variable "forking_access_level" {
 
 variable "group_runners_enabled" {
   type        = bool
-  default     = false
+  default     = true
   description = "enable group runners for this project"
 }
 
