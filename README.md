@@ -64,6 +64,7 @@ No modules.
 | <a name="input_ci_config_path"></a> [ci\_config\_path](#input\_ci\_config\_path) | Custom Path to CI config file | `string` | `null` | no |
 | <a name="input_ci_default_git_depth"></a> [ci\_default\_git\_depth](#input\_ci\_default\_git\_depth) | Default number of revisions for shallow cloning | `number` | `20` | no |
 | <a name="input_ci_forward_deployment_enabled"></a> [ci\_forward\_deployment\_enabled](#input\_ci\_forward\_deployment\_enabled) | When a new deployment job starts, skip older deployment jobs that are still pending | `bool` | `true` | no |
+| <a name="input_ci_pipeline_variables_minimum_override_role"></a> [ci\_pipeline\_variables\_minimum\_override\_role](#input\_ci\_pipeline\_variables\_minimum\_override\_role) | The minimum role required to set variables when running pipelines and jobs | `string` | `"maintainer"` | no |
 | <a name="input_ci_separated_caches"></a> [ci\_separated\_caches](#input\_ci\_separated\_caches) | Use separate caches for protected branches | `bool` | `true` | no |
 | <a name="input_container_expiration_policy"></a> [container\_expiration\_policy](#input\_container\_expiration\_policy) | Set the image cleanup policy for this project | `list(string)` | `[]` | no |
 | <a name="input_container_registry_access_level"></a> [container\_registry\_access\_level](#input\_container\_registry\_access\_level) | Set visibility of container registry, for this project | `string` | `"enabled"` | no |
@@ -75,6 +76,7 @@ No modules.
 | <a name="input_feature_flags_access_level"></a> [feature\_flags\_access\_level](#input\_feature\_flags\_access\_level) | Set the feature flags access level | `string` | `"enabled"` | no |
 | <a name="input_forked_from_project_id"></a> [forked\_from\_project\_id](#input\_forked\_from\_project\_id) | The ID of the project to fork | `number` | `null` | no |
 | <a name="input_forking_access_level"></a> [forking\_access\_level](#input\_forking\_access\_level) | Set the forking access level | `string` | `"enabled"` | no |
+| <a name="input_group_runners_enabled"></a> [group\_runners\_enabled](#input\_group\_runners\_enabled) | enable group runners for this project | `bool` | `false` | no |
 | <a name="input_group_with_project_templates_id"></a> [group\_with\_project\_templates\_id](#input\_group\_with\_project\_templates\_id) | For group-level custom templates, specifies ID of group from which all the custom project templates are sourced | `number` | `null` | no |
 | <a name="input_import_url"></a> [import\_url](#input\_import\_url) | Git URL to a repository to be imported | `string` | `null` | no |
 | <a name="input_import_url_password"></a> [import\_url\_password](#input\_import\_url\_password) | The password for the import\_url | `string` | `null` | no |
@@ -96,6 +98,8 @@ No modules.
 | <a name="input_mirror"></a> [mirror](#input\_mirror) | Enable project pull mirror | `bool` | `false` | no |
 | <a name="input_mirror_overwrites_diverged_branches"></a> [mirror\_overwrites\_diverged\_branches](#input\_mirror\_overwrites\_diverged\_branches) | Enable overwrite diverged branches for a mirrored project | `bool` | `true` | no |
 | <a name="input_mirror_trigger_builds"></a> [mirror\_trigger\_builds](#input\_mirror\_trigger\_builds) | Enable trigger builds on pushes for a mirrored project | `bool` | `false` | no |
+| <a name="input_model_experiments_access_level"></a> [model\_experiments\_access\_level](#input\_model\_experiments\_access\_level) | Set visibility of machine learning model experiments | `string` | `"enabled"` | no |
+| <a name="input_model_registry_access_level"></a> [model\_registry\_access\_level](#input\_model\_registry\_access\_level) | Set visibility of machine learning model registry | `string` | `"enabled"` | no |
 | <a name="input_monitor_access_level"></a> [monitor\_access\_level](#input\_monitor\_access\_level) | Set the monitor access level | `string` | `"enabled"` | no |
 | <a name="input_mr_default_target_self"></a> [mr\_default\_target\_self](#input\_mr\_default\_target\_self) | For forked projects, target merge requests to this project | `bool` | `false` | no |
 | <a name="input_name"></a> [name](#input\_name) | The name of the project | `string` | n/a | yes |
@@ -128,6 +132,7 @@ No modules.
 | <a name="input_tags"></a> [tags](#input\_tags) | The list of tags for a project | `set(string)` | `[]` | no |
 | <a name="input_template_name"></a> [template\_name](#input\_template\_name) | When used without use\_custom\_template, name of a built-in project template | `string` | `null` | no |
 | <a name="input_template_project_id"></a> [template\_project\_id](#input\_template\_project\_id) | When used with use\_custom\_template, project ID of a custom project template | `number` | `null` | no |
+| <a name="input_timeouts"></a> [timeouts](#input\_timeouts) | Timeout, in minutes | `list(string)` | `[]` | no |
 | <a name="input_topics"></a> [topics](#input\_topics) | The list of topics for the project | `set(string)` | `[]` | no |
 | <a name="input_use_custom_template"></a> [use\_custom\_template](#input\_use\_custom\_template) | Use either custom instance or group (with group\_with\_project\_templates\_id) project template (enterprise edition) | `bool` | `false` | no |
 | <a name="input_visibility_level"></a> [visibility\_level](#input\_visibility\_level) | Set to public to create a public project | `string` | `"private"` | no |

@@ -125,6 +125,17 @@ variable "ci_forward_deployment_enabled" {
   description = "When a new deployment job starts, skip older deployment jobs that are still pending"
 }
 
+variable "ci_pipeline_variables_minimum_override_role" {
+  type        = string
+  default     = "developer"
+  description = "The minimum role required to set variables when running pipelines and jobs"
+
+  validation {
+    condition     = contains(["developer", "maintainer", "owner", "no_one_allowed"], var.ci_pipeline_variables_minimum_override_role)
+    error_message = "Valid values are developer, maintainer, owner, no_one_allowed"
+  }
+}
+
 variable "ci_separated_caches" {
   type        = bool
   default     = true
@@ -209,6 +220,12 @@ variable "forking_access_level" {
     condition     = contains(["disabled", "private", "enabled"], var.forking_access_level)
     error_message = "Valid values are disabled, private, enabled"
   }
+}
+
+variable "group_runners_enabled" {
+  type        = bool
+  default     = false
+  description = "enable group runners for this project"
 }
 
 variable "group_with_project_templates_id" {
@@ -356,6 +373,28 @@ variable "mirror_trigger_builds" {
   type        = bool
   default     = false
   description = "Enable trigger builds on pushes for a mirrored project"
+}
+
+variable "model_experiments_access_level" {
+  type        = string
+  default     = "enabled"
+  description = "Set visibility of machine learning model experiments"
+
+  validation {
+    condition     = contains(["disabled", "private", "enabled"], var.model_experiments_access_level)
+    error_message = "Valid values are disabled, private, enabled"
+  }
+}
+
+variable "model_registry_access_level" {
+  type        = string
+  default     = "enabled"
+  description = "Set visibility of machine learning model registry"
+
+  validation {
+    condition     = contains(["disabled", "private", "enabled"], var.model_registry_access_level)
+    error_message = "Valid values are disabled, private, enabled"
+  }
 }
 
 variable "monitor_access_level" {
@@ -582,6 +621,12 @@ variable "template_project_id" {
   type        = number
   default     = null
   description = "When used with use_custom_template, project ID of a custom project template"
+}
+
+variable "timeouts" {
+  type        = list(string)
+  default     = []
+  description = "Timeout, in minutes"
 }
 
 variable "topics" {

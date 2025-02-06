@@ -1,5 +1,6 @@
 resource "gitlab_project" "this" {
-  name                                             = var.name
+  name = var.name
+
   allow_merge_on_skipped_pipeline                  = var.allow_merge_on_skipped_pipeline
   analytics_access_level                           = var.analytics_access_level
   approvals_before_merge                           = var.approvals_before_merge
@@ -17,6 +18,7 @@ resource "gitlab_project" "this" {
   ci_config_path                                   = var.ci_config_path
   ci_default_git_depth                             = var.ci_default_git_depth
   ci_forward_deployment_enabled                    = var.ci_forward_deployment_enabled
+  ci_pipeline_variables_minimum_override_role      = var.ci_pipeline_variables_minimum_override_role
   ci_separated_caches                              = var.ci_separated_caches
   container_registry_access_level                  = var.container_registry_access_level
   default_branch                                   = var.default_branch
@@ -27,6 +29,7 @@ resource "gitlab_project" "this" {
   feature_flags_access_level                       = var.feature_flags_access_level
   forked_from_project_id                           = var.forked_from_project_id
   forking_access_level                             = var.forking_access_level
+  group_runners_enabled                            = var.group_runners_enabled
   group_with_project_templates_id                  = var.group_with_project_templates_id
   import_url                                       = var.import_url
   import_url_password                              = var.import_url_password
@@ -48,6 +51,8 @@ resource "gitlab_project" "this" {
   mirror                                           = var.import_url != null ? var.mirror : null
   mirror_overwrites_diverged_branches              = var.import_url != null ? var.mirror_overwrites_diverged_branches : null
   mirror_trigger_builds                            = var.import_url != null ? var.mirror_trigger_builds : null
+  model_experiments_access_level                   = var.model_experiments_access_level
+  model_registry_access_level                      = var.model_registry_access_level
   monitor_access_level                             = var.monitor_access_level
   mr_default_target_self                           = var.forked_from_project_id != null ? var.mr_default_target_self : null
   namespace_id                                     = var.namespace_id
@@ -94,6 +99,15 @@ resource "gitlab_project" "this" {
       name_regex_delete = lookup(container_expiration_policy.value, "name_regex_delete", ".*")
       name_regex_keep   = lookup(container_expiration_policy.value, "name_regex_keep", null)
       older_than        = lookup(container_expiration_policy.value, "older_than", "90d")
+    }
+  }
+
+  dynamic "timeouts" {
+    for_each = var.timeouts
+
+    content {
+      create = lookup(timeouts.value, "create", null)
+      delete = lookup(timeouts.value, "delete", null)
     }
   }
 
