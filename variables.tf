@@ -538,7 +538,7 @@ variable "resolve_outdated_diff_discussions" {
 
 variable "restrict_user_defined_variables" {
   type        = bool
-  default     = true
+  default     = false
   description = "Allow only users with the Maintainer role to pass user-defined variables when triggering a pipeline"
 }
 
