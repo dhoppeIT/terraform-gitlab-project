@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.6](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/compare/v1.1.5...v1.1.6) (2025-04-09)
+
+### Bug Fixes
+
+* **terraform:** Use correct default value ([1ff4726](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/commit/1ff47260a3985bf0e175cd86749f62297a72f0b1))
+
 ## [1.1.5](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/compare/v1.1.4...v1.1.5) (2025-02-06)
 
 ### Bug Fixes
