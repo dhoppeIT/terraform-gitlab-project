@@ -17,7 +17,9 @@ resource "gitlab_project" "this" {
   builds_access_level                              = var.builds_access_level
   ci_config_path                                   = var.ci_config_path
   ci_default_git_depth                             = var.ci_default_git_depth
+  ci_delete_pipelines_in_seconds                   = var.ci_delete_pipelines_in_seconds
   ci_forward_deployment_enabled                    = var.ci_forward_deployment_enabled
+  ci_id_token_sub_claim_components                 = var.ci_id_token_sub_claim_components
   ci_pipeline_variables_minimum_override_role      = var.ci_pipeline_variables_minimum_override_role
   ci_separated_caches                              = var.ci_separated_caches
   container_registry_access_level                  = var.container_registry_access_level

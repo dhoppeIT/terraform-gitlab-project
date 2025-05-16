@@ -35,13 +35,13 @@ module "gitlab_project" {
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | ~> 17.0 |
+| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | ~> 18.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | ~> 17.0 |
+| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | ~> 18.0 |
 
 ## Modules
 
@@ -73,7 +73,9 @@ No modules.
 | <a name="input_builds_access_level"></a> [builds\_access\_level](#input\_builds\_access\_level) | Set the builds access level | `string` | `"enabled"` | no |
 | <a name="input_ci_config_path"></a> [ci\_config\_path](#input\_ci\_config\_path) | Custom Path to CI config file | `string` | `null` | no |
 | <a name="input_ci_default_git_depth"></a> [ci\_default\_git\_depth](#input\_ci\_default\_git\_depth) | Default number of revisions for shallow cloning | `number` | `20` | no |
+| <a name="input_ci_delete_pipelines_in_seconds"></a> [ci\_delete\_pipelines\_in\_seconds](#input\_ci\_delete\_pipelines\_in\_seconds) | Pipelines older than the configured time are deleted | `number` | `null` | no |
 | <a name="input_ci_forward_deployment_enabled"></a> [ci\_forward\_deployment\_enabled](#input\_ci\_forward\_deployment\_enabled) | When a new deployment job starts, skip older deployment jobs that are still pending | `bool` | `true` | no |
+| <a name="input_ci_id_token_sub_claim_components"></a> [ci\_id\_token\_sub\_claim\_components](#input\_ci\_id\_token\_sub\_claim\_components) | Fields included in the sub claim of the ID Token | `list(string)` | ```[ "project_path", "ref_type", "ref" ]``` | no |
 | <a name="input_ci_pipeline_variables_minimum_override_role"></a> [ci\_pipeline\_variables\_minimum\_override\_role](#input\_ci\_pipeline\_variables\_minimum\_override\_role) | The minimum role required to set variables when running pipelines and jobs | `string` | `"developer"` | no |
 | <a name="input_ci_separated_caches"></a> [ci\_separated\_caches](#input\_ci\_separated\_caches) | Use separate caches for protected branches | `bool` | `true` | no |
 | <a name="input_container_expiration_policy"></a> [container\_expiration\_policy](#input\_container\_expiration\_policy) | Set the image cleanup policy for this project | `list(string)` | `[]` | no |

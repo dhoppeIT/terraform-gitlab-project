@@ -119,10 +119,26 @@ variable "ci_default_git_depth" {
   description = "Default number of revisions for shallow cloning"
 }
 
+variable "ci_delete_pipelines_in_seconds" {
+  type        = number
+  default     = null
+  description = "Pipelines older than the configured time are deleted"
+}
+
 variable "ci_forward_deployment_enabled" {
   type        = bool
   default     = true
   description = "When a new deployment job starts, skip older deployment jobs that are still pending"
+}
+
+variable "ci_id_token_sub_claim_components" {
+  type = list(string)
+  default = [
+    "project_path",
+    "ref_type",
+    "ref"
+  ]
+  description = "Fields included in the sub claim of the ID Token"
 }
 
 variable "ci_pipeline_variables_minimum_override_role" {
