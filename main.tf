@@ -130,4 +130,10 @@ resource "gitlab_project" "this" {
       reject_unsigned_commits       = lookup(push_rules.value, "reject_unsigned_commits", false)
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      tags
+    ]
+  }
 }
