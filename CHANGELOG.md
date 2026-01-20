@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.1](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/compare/v1.2.0...v1.2.1) (2026-01-20)
+
+### Bug Fixes
+
+* **terraform:** Ignore changes regarding tags ([7b60447](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/commit/7b60447e64c67bdc8bba3aab559bd3552ac9b449))
+
 ## [1.2.0](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/compare/v1.1.6...v1.2.0) (2025-05-20)
 
 ### Features
