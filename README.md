@@ -74,8 +74,10 @@ No modules.
 | <a name="input_ci_default_git_depth"></a> [ci\_default\_git\_depth](#input\_ci\_default\_git\_depth) | Default number of revisions for shallow cloning | `number` | `20` | no |
 | <a name="input_ci_delete_pipelines_in_seconds"></a> [ci\_delete\_pipelines\_in\_seconds](#input\_ci\_delete\_pipelines\_in\_seconds) | Pipelines older than the configured time are deleted | `number` | `null` | no |
 | <a name="input_ci_forward_deployment_enabled"></a> [ci\_forward\_deployment\_enabled](#input\_ci\_forward\_deployment\_enabled) | When a new deployment job starts, skip older deployment jobs that are still pending | `bool` | `true` | no |
+| <a name="input_ci_forward_deployment_rollback_allowed"></a> [ci\_forward\_deployment\_rollback\_allowed](#input\_ci\_forward\_deployment\_rollback\_allowed) | Allow job retries even if the deployment job is outdated | `bool` | `true` | no |
 | <a name="input_ci_id_token_sub_claim_components"></a> [ci\_id\_token\_sub\_claim\_components](#input\_ci\_id\_token\_sub\_claim\_components) | Fields included in the sub claim of the ID Token | `list(string)` | ```[ "project_path", "ref_type", "ref" ]``` | no |
 | <a name="input_ci_pipeline_variables_minimum_override_role"></a> [ci\_pipeline\_variables\_minimum\_override\_role](#input\_ci\_pipeline\_variables\_minimum\_override\_role) | The minimum role required to set variables when running pipelines and jobs | `string` | `"developer"` | no |
+| <a name="input_ci_push_repository_for_job_token_allowed"></a> [ci\_push\_repository\_for\_job\_token\_allowed](#input\_ci\_push\_repository\_for\_job\_token\_allowed) | Allow Git push requests to your project repository that are authenticated with a CI/CD job token | `bool` | `true` | no |
 | <a name="input_ci_separated_caches"></a> [ci\_separated\_caches](#input\_ci\_separated\_caches) | Use separate caches for protected branches | `bool` | `true` | no |
 | <a name="input_container_expiration_policy"></a> [container\_expiration\_policy](#input\_container\_expiration\_policy) | Set the image cleanup policy for this project | `list(string)` | `[]` | no |
 | <a name="input_container_registry_access_level"></a> [container\_registry\_access\_level](#input\_container\_registry\_access\_level) | Set visibility of container registry, for this project | `string` | `"enabled"` | no |
@@ -104,6 +106,7 @@ No modules.
 | <a name="input_merge_requests_access_level"></a> [merge\_requests\_access\_level](#input\_merge\_requests\_access\_level) | Set the merge requests access level | `string` | `"enabled"` | no |
 | <a name="input_merge_requests_template"></a> [merge\_requests\_template](#input\_merge\_requests\_template) | Sets the template for new merge requests in the project | `string` | `null` | no |
 | <a name="input_merge_trains_enabled"></a> [merge\_trains\_enabled](#input\_merge\_trains\_enabled) | Enable or disable merge trains | `bool` | `false` | no |
+| <a name="input_merge_trains_skip_train_allowed"></a> [merge\_trains\_skip\_train\_allowed](#input\_merge\_trains\_skip\_train\_allowed) | Allows merge train merge requests to be merged without waiting for pipelines to finish | `bool` | `false` | no |
 | <a name="input_mirror"></a> [mirror](#input\_mirror) | Enable project pull mirror | `bool` | `false` | no |
 | <a name="input_mirror_overwrites_diverged_branches"></a> [mirror\_overwrites\_diverged\_branches](#input\_mirror\_overwrites\_diverged\_branches) | Enable overwrite diverged branches for a mirrored project | `bool` | `true` | no |
 | <a name="input_mirror_trigger_builds"></a> [mirror\_trigger\_builds](#input\_mirror\_trigger\_builds) | Enable trigger builds on pushes for a mirrored project | `bool` | `false` | no |
@@ -129,6 +132,7 @@ No modules.
 | <a name="input_request_access_enabled"></a> [request\_access\_enabled](#input\_request\_access\_enabled) | Allow users to request member access | `bool` | `true` | no |
 | <a name="input_requirements_access_level"></a> [requirements\_access\_level](#input\_requirements\_access\_level) | Set the requirements access level | `string` | `"enabled"` | no |
 | <a name="input_resolve_outdated_diff_discussions"></a> [resolve\_outdated\_diff\_discussions](#input\_resolve\_outdated\_diff\_discussions) | Automatically resolve merge request diffs discussions on lines changed with a push | `bool` | `false` | no |
+| <a name="input_resource_group_default_process_mode"></a> [resource\_group\_default\_process\_mode](#input\_resource\_group\_default\_process\_mode) | The default resource group process mode for the project | `string` | `"unordered"` | no |
 | <a name="input_security_and_compliance_access_level"></a> [security\_and\_compliance\_access\_level](#input\_security\_and\_compliance\_access\_level) | Set the security and compliance access level | `string` | `"private"` | no |
 | <a name="input_shared_runners_enabled"></a> [shared\_runners\_enabled](#input\_shared\_runners\_enabled) | Enable shared runners for this project | `bool` | `true` | no |
 | <a name="input_skip_wait_for_default_branch_protection"></a> [skip\_wait\_for\_default\_branch\_protection](#input\_skip\_wait\_for\_default\_branch\_protection) | If true, the default behavior to wait for the default branch protection to be created is skipped | `bool` | `false` | no |

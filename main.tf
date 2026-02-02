@@ -18,8 +18,10 @@ resource "gitlab_project" "this" {
   ci_default_git_depth                             = var.ci_default_git_depth
   ci_delete_pipelines_in_seconds                   = var.ci_delete_pipelines_in_seconds
   ci_forward_deployment_enabled                    = var.ci_forward_deployment_enabled
+  ci_forward_deployment_rollback_allowed           = var.ci_forward_deployment_rollback_allowed
   ci_id_token_sub_claim_components                 = var.ci_id_token_sub_claim_components
   ci_pipeline_variables_minimum_override_role      = var.ci_pipeline_variables_minimum_override_role
+  ci_push_repository_for_job_token_allowed         = var.ci_push_repository_for_job_token_allowed
   ci_separated_caches                              = var.ci_separated_caches
   container_registry_access_level                  = var.container_registry_access_level
   default_branch                                   = var.default_branch
@@ -47,6 +49,7 @@ resource "gitlab_project" "this" {
   merge_requests_access_level                      = var.merge_requests_access_level
   merge_requests_template                          = var.merge_requests_template
   merge_trains_enabled                             = var.merge_trains_enabled
+  merge_trains_skip_train_allowed                  = var.merge_trains_skip_train_allowed
   mirror                                           = var.import_url != null ? var.mirror : null
   mirror_overwrites_diverged_branches              = var.import_url != null ? var.mirror_overwrites_diverged_branches : null
   mirror_trigger_builds                            = var.import_url != null ? var.mirror_trigger_builds : null
@@ -67,6 +70,7 @@ resource "gitlab_project" "this" {
   remove_source_branch_after_merge                 = var.remove_source_branch_after_merge
   repository_access_level                          = var.repository_access_level
   repository_storage                               = var.repository_storage
+  resource_group_default_process_mode              = var.resource_group_default_process_mode
   request_access_enabled                           = var.request_access_enabled
   requirements_access_level                        = var.requirements_access_level
   resolve_outdated_diff_discussions                = var.resolve_outdated_diff_discussions

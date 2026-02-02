@@ -125,6 +125,12 @@ variable "ci_forward_deployment_enabled" {
   description = "When a new deployment job starts, skip older deployment jobs that are still pending"
 }
 
+variable "ci_forward_deployment_rollback_allowed" {
+  type        = bool
+  default     = true
+  description = "Allow job retries even if the deployment job is outdated"
+}
+
 variable "ci_id_token_sub_claim_components" {
   type = list(string)
   default = [
@@ -144,6 +150,12 @@ variable "ci_pipeline_variables_minimum_override_role" {
     condition     = contains(["developer", "maintainer", "owner", "no_one_allowed"], var.ci_pipeline_variables_minimum_override_role)
     error_message = "Valid values are developer, maintainer, owner, no_one_allowed"
   }
+}
+
+variable "ci_push_repository_for_job_token_allowed" {
+  type        = bool
+  default     = true
+  description = "Allow Git push requests to your project repository that are authenticated with a CI/CD job token"
 }
 
 variable "ci_separated_caches" {
@@ -355,6 +367,12 @@ variable "merge_trains_enabled" {
   description = "Enable or disable merge trains"
 }
 
+variable "merge_trains_skip_train_allowed" {
+  type        = bool
+  default     = false
+  description = "Allows merge train merge requests to be merged without waiting for pipelines to finish"
+}
+
 variable "mirror" {
   type        = bool
   default     = false
@@ -511,6 +529,11 @@ variable "repository_storage" {
   description = "Which storage shard the repository is on"
 }
 
+variable "resource_group_default_process_mode" {
+  type        = string
+  default     = "unordered"
+  description = "The default resource group process mode for the project"
+}
 variable "request_access_enabled" {
   type        = bool
   default     = true
