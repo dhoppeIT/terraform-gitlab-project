@@ -20,12 +20,6 @@ variable "analytics_access_level" {
   }
 }
 
-variable "approvals_before_merge" {
-  type        = number
-  default     = 0
-  description = "Number of merge request approvals required for merging"
-}
-
 variable "archive_on_destroy" {
   type        = bool
   default     = false
@@ -297,12 +291,6 @@ variable "issues_access_level" {
   }
 }
 
-variable "issues_enabled" {
-  type        = bool
-  default     = true
-  description = "Enable issue tracking for the project"
-}
-
 variable "issues_template" {
   type        = string
   default     = null
@@ -353,12 +341,6 @@ variable "merge_requests_access_level" {
     condition     = contains(["disabled", "private", "enabled"], var.merge_requests_access_level)
     error_message = "Valid values are disabled, private, enabled"
   }
-}
-
-variable "merge_requests_enabled" {
-  type        = bool
-  default     = true
-  description = "Enable merge requests for the project"
 }
 
 variable "merge_requests_template" {
@@ -552,12 +534,6 @@ variable "resolve_outdated_diff_discussions" {
   description = "Automatically resolve merge request diffs discussions on lines changed with a push"
 }
 
-variable "restrict_user_defined_variables" {
-  type        = bool
-  default     = false
-  description = "Allow only users with the Maintainer role to pass user-defined variables when triggering a pipeline"
-}
-
 variable "security_and_compliance_access_level" {
   type        = string
   default     = "private"
@@ -592,12 +568,6 @@ variable "snippets_access_level" {
   }
 }
 
-variable "snippets_enabled" {
-  type        = bool
-  default     = true
-  description = "Enable snippets for the project"
-}
-
 variable "squash_commit_template" {
   type        = string
   default     = null
@@ -619,12 +589,6 @@ variable "suggestion_commit_message" {
   type        = string
   default     = null
   description = "The commit message used to apply merge request suggestions"
-}
-
-variable "tags" {
-  type        = set(string)
-  default     = []
-  description = "The list of tags for a project"
 }
 
 variable "template_name" {
@@ -677,10 +641,4 @@ variable "wiki_access_level" {
     condition     = contains(["disabled", "private", "enabled"], var.wiki_access_level)
     error_message = "Valid values are disabled, private, enabled"
   }
-}
-
-variable "wiki_enabled" {
-  type        = bool
-  default     = true
-  description = "Enable wiki for the project"
 }

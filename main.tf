@@ -3,7 +3,6 @@ resource "gitlab_project" "this" {
 
   allow_merge_on_skipped_pipeline                  = var.allow_merge_on_skipped_pipeline
   analytics_access_level                           = var.analytics_access_level
-  approvals_before_merge                           = var.approvals_before_merge
   archive_on_destroy                               = var.archive_on_destroy
   archived                                         = var.archived
   auto_cancel_pending_pipelines                    = var.auto_cancel_pending_pipelines
@@ -39,7 +38,6 @@ resource "gitlab_project" "this" {
   infrastructure_access_level                      = var.infrastructure_access_level
   initialize_with_readme                           = var.initialize_with_readme
   issues_access_level                              = var.issues_access_level
-  issues_enabled                                   = var.issues_enabled
   issues_template                                  = var.issues_template
   keep_latest_artifact                             = var.keep_latest_artifact
   lfs_enabled                                      = var.lfs_enabled
@@ -47,7 +45,6 @@ resource "gitlab_project" "this" {
   merge_method                                     = var.merge_method
   merge_pipelines_enabled                          = var.merge_pipelines_enabled
   merge_requests_access_level                      = var.merge_requests_access_level
-  merge_requests_enabled                           = var.merge_requests_enabled
   merge_requests_template                          = var.merge_requests_template
   merge_trains_enabled                             = var.merge_trains_enabled
   mirror                                           = var.import_url != null ? var.mirror : null
@@ -73,23 +70,19 @@ resource "gitlab_project" "this" {
   request_access_enabled                           = var.request_access_enabled
   requirements_access_level                        = var.requirements_access_level
   resolve_outdated_diff_discussions                = var.resolve_outdated_diff_discussions
-  restrict_user_defined_variables                  = var.restrict_user_defined_variables
   security_and_compliance_access_level             = var.security_and_compliance_access_level
   shared_runners_enabled                           = var.shared_runners_enabled
   skip_wait_for_default_branch_protection          = var.skip_wait_for_default_branch_protection
   snippets_access_level                            = var.snippets_access_level
-  snippets_enabled                                 = var.snippets_enabled
   squash_commit_template                           = var.squash_commit_template
   squash_option                                    = var.squash_option
   suggestion_commit_message                        = var.suggestion_commit_message
-  tags                                             = var.tags
   template_name                                    = var.template_name
   template_project_id                              = var.template_project_id
   topics                                           = var.topics
   use_custom_template                              = var.use_custom_template
   visibility_level                                 = var.visibility_level
   wiki_access_level                                = var.wiki_access_level
-  wiki_enabled                                     = var.wiki_enabled
 
   dynamic "container_expiration_policy" {
     for_each = var.container_expiration_policy

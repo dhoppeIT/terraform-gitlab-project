@@ -59,7 +59,6 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_allow_merge_on_skipped_pipeline"></a> [allow\_merge\_on\_skipped\_pipeline](#input\_allow\_merge\_on\_skipped\_pipeline) | Set to true if you want to treat skipped pipelines as if they finished with success. | `bool` | `false` | no |
 | <a name="input_analytics_access_level"></a> [analytics\_access\_level](#input\_analytics\_access\_level) | Set the analytics access level | `string` | `"enabled"` | no |
-| <a name="input_approvals_before_merge"></a> [approvals\_before\_merge](#input\_approvals\_before\_merge) | Number of merge request approvals required for merging | `number` | `0` | no |
 | <a name="input_archive_on_destroy"></a> [archive\_on\_destroy](#input\_archive\_on\_destroy) | Set to true to archive the project instead of deleting on destroy | `bool` | `false` | no |
 | <a name="input_archived"></a> [archived](#input\_archived) | Whether the project is in read-only mode (archived) | `bool` | `false` | no |
 | <a name="input_auto_cancel_pending_pipelines"></a> [auto\_cancel\_pending\_pipelines](#input\_auto\_cancel\_pending\_pipelines) | Auto-cancel pending pipelines | `string` | `"enabled"` | no |
@@ -96,7 +95,6 @@ No modules.
 | <a name="input_infrastructure_access_level"></a> [infrastructure\_access\_level](#input\_infrastructure\_access\_level) | Set the infrastructure access level | `string` | `"enabled"` | no |
 | <a name="input_initialize_with_readme"></a> [initialize\_with\_readme](#input\_initialize\_with\_readme) | Create main branch with first commit containing a README.md file | `bool` | `true` | no |
 | <a name="input_issues_access_level"></a> [issues\_access\_level](#input\_issues\_access\_level) | Set the issues access level | `string` | `"enabled"` | no |
-| <a name="input_issues_enabled"></a> [issues\_enabled](#input\_issues\_enabled) | Enable issue tracking for the project | `bool` | `true` | no |
 | <a name="input_issues_template"></a> [issues\_template](#input\_issues\_template) | Sets the template for new issues in the project | `string` | `null` | no |
 | <a name="input_keep_latest_artifact"></a> [keep\_latest\_artifact](#input\_keep\_latest\_artifact) | Disable or enable the ability to keep the latest artifact for this project | `bool` | `true` | no |
 | <a name="input_lfs_enabled"></a> [lfs\_enabled](#input\_lfs\_enabled) | Enable LFS for the project | `bool` | `true` | no |
@@ -104,7 +102,6 @@ No modules.
 | <a name="input_merge_method"></a> [merge\_method](#input\_merge\_method) | Set the merge method | `string` | `"merge"` | no |
 | <a name="input_merge_pipelines_enabled"></a> [merge\_pipelines\_enabled](#input\_merge\_pipelines\_enabled) | Enable or disable merge pipelines | `bool` | `false` | no |
 | <a name="input_merge_requests_access_level"></a> [merge\_requests\_access\_level](#input\_merge\_requests\_access\_level) | Set the merge requests access level | `string` | `"enabled"` | no |
-| <a name="input_merge_requests_enabled"></a> [merge\_requests\_enabled](#input\_merge\_requests\_enabled) | Enable merge requests for the project | `bool` | `true` | no |
 | <a name="input_merge_requests_template"></a> [merge\_requests\_template](#input\_merge\_requests\_template) | Sets the template for new merge requests in the project | `string` | `null` | no |
 | <a name="input_merge_trains_enabled"></a> [merge\_trains\_enabled](#input\_merge\_trains\_enabled) | Enable or disable merge trains | `bool` | `false` | no |
 | <a name="input_mirror"></a> [mirror](#input\_mirror) | Enable project pull mirror | `bool` | `false` | no |
@@ -132,16 +129,13 @@ No modules.
 | <a name="input_request_access_enabled"></a> [request\_access\_enabled](#input\_request\_access\_enabled) | Allow users to request member access | `bool` | `true` | no |
 | <a name="input_requirements_access_level"></a> [requirements\_access\_level](#input\_requirements\_access\_level) | Set the requirements access level | `string` | `"enabled"` | no |
 | <a name="input_resolve_outdated_diff_discussions"></a> [resolve\_outdated\_diff\_discussions](#input\_resolve\_outdated\_diff\_discussions) | Automatically resolve merge request diffs discussions on lines changed with a push | `bool` | `false` | no |
-| <a name="input_restrict_user_defined_variables"></a> [restrict\_user\_defined\_variables](#input\_restrict\_user\_defined\_variables) | Allow only users with the Maintainer role to pass user-defined variables when triggering a pipeline | `bool` | `false` | no |
 | <a name="input_security_and_compliance_access_level"></a> [security\_and\_compliance\_access\_level](#input\_security\_and\_compliance\_access\_level) | Set the security and compliance access level | `string` | `"private"` | no |
 | <a name="input_shared_runners_enabled"></a> [shared\_runners\_enabled](#input\_shared\_runners\_enabled) | Enable shared runners for this project | `bool` | `true` | no |
 | <a name="input_skip_wait_for_default_branch_protection"></a> [skip\_wait\_for\_default\_branch\_protection](#input\_skip\_wait\_for\_default\_branch\_protection) | If true, the default behavior to wait for the default branch protection to be created is skipped | `bool` | `false` | no |
 | <a name="input_snippets_access_level"></a> [snippets\_access\_level](#input\_snippets\_access\_level) | Set the snippets access level | `string` | `"enabled"` | no |
-| <a name="input_snippets_enabled"></a> [snippets\_enabled](#input\_snippets\_enabled) | Enable snippets for the project | `bool` | `true` | no |
 | <a name="input_squash_commit_template"></a> [squash\_commit\_template](#input\_squash\_commit\_template) | Template used to create squash commit message in merge requests | `string` | `null` | no |
 | <a name="input_squash_option"></a> [squash\_option](#input\_squash\_option) | Squash commits when merge request | `string` | `"default_off"` | no |
 | <a name="input_suggestion_commit_message"></a> [suggestion\_commit\_message](#input\_suggestion\_commit\_message) | The commit message used to apply merge request suggestions | `string` | `null` | no |
-| <a name="input_tags"></a> [tags](#input\_tags) | The list of tags for a project | `set(string)` | `[]` | no |
 | <a name="input_template_name"></a> [template\_name](#input\_template\_name) | When used without use\_custom\_template, name of a built-in project template | `string` | `null` | no |
 | <a name="input_template_project_id"></a> [template\_project\_id](#input\_template\_project\_id) | When used with use\_custom\_template, project ID of a custom project template | `number` | `null` | no |
 | <a name="input_timeouts"></a> [timeouts](#input\_timeouts) | Timeout, in minutes | `list(string)` | `[]` | no |
@@ -149,7 +143,6 @@ No modules.
 | <a name="input_use_custom_template"></a> [use\_custom\_template](#input\_use\_custom\_template) | Use either custom instance or group (with group\_with\_project\_templates\_id) project template (enterprise edition) | `bool` | `false` | no |
 | <a name="input_visibility_level"></a> [visibility\_level](#input\_visibility\_level) | Set to public to create a public project | `string` | `"private"` | no |
 | <a name="input_wiki_access_level"></a> [wiki\_access\_level](#input\_wiki\_access\_level) | Set the wiki access level | `string` | `"enabled"` | no |
-| <a name="input_wiki_enabled"></a> [wiki\_enabled](#input\_wiki\_enabled) | Enable wiki for the project | `bool` | `true` | no |
 
 ## Outputs
 
