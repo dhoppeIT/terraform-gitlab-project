@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.2](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/compare/v1.2.1...v1.2.2) (2026-02-02)
+
+### Bug Fixes
+
+* **terraform:** Add missing variables ([a525282](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/commit/a5252828829ce4b107556c82225035a0d29db3de))
+* **terraform:** Remove deprecated variables ([047f367](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/commit/047f36747ecd71b41b90f0f0e1da3cca152c51dd))
+
 ## [1.2.1](https://gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/compare/v1.2.0...v1.2.1) (2026-01-20)
 
 ### Bug Fixes
