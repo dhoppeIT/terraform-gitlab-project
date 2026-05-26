@@ -6,7 +6,13 @@ variable "name" {
 variable "allow_merge_on_skipped_pipeline" {
   type        = bool
   default     = false
-  description = "Set to true if you want to treat skipped pipelines as if they finished with success."
+  description = "Set to true if you want to treat skipped pipelines as if they finished with success"
+}
+
+variable "allow_pipeline_trigger_approve_deployment" {
+  type        = bool
+  default     = null
+  description = "Set whether or not a pipeline triggerer is allowed to approve deployments. Premium and Ultimate only"
 }
 
 variable "analytics_access_level" {
@@ -22,7 +28,7 @@ variable "analytics_access_level" {
 
 variable "archive_on_destroy" {
   type        = bool
-  default     = false
+  default     = null
   description = "Set to true to archive the project instead of deleting on destroy"
 }
 
@@ -55,6 +61,12 @@ variable "auto_devops_enabled" {
   description = "Enable Auto DevOps for this project"
 }
 
+variable "auto_duo_code_review_enabled" {
+  type        = bool
+  default     = null
+  description = "Enable automatic reviews by GitLab Duo on merge requests. Ultimate only"
+}
+
 variable "autoclose_referenced_issues" {
   type        = bool
   default     = true
@@ -71,6 +83,12 @@ variable "avatar_hash" {
   type        = string
   default     = null
   description = "The hash of the avatar image"
+}
+
+variable "branches" {
+  type        = string
+  default     = null
+  description = "Branches to fork (empty for all branches)"
 }
 
 variable "build_git_strategy" {
@@ -158,6 +176,17 @@ variable "ci_push_repository_for_job_token_allowed" {
   description = "Allow Git push requests to your project repository that are authenticated with a CI/CD job token"
 }
 
+variable "ci_restrict_pipeline_cancellation_role" {
+  type        = string
+  default     = null
+  description = "The role required to cancel a pipeline or job. Premium and Ultimate only"
+
+  validation {
+    condition     = var.ci_restrict_pipeline_cancellation_role == null || contains(["developer", "maintainer", "no one"], var.ci_restrict_pipeline_cancellation_role)
+    error_message = "Valid values are developer, maintainer, no one"
+  }
+}
+
 variable "ci_separated_caches" {
   type        = bool
   default     = true
@@ -165,8 +194,15 @@ variable "ci_separated_caches" {
 }
 
 variable "container_expiration_policy" {
-  type        = list(string)
-  default     = []
+  type = object({
+    cadence           = optional(string, "1d")
+    enabled           = optional(bool, false)
+    keep_n            = optional(number, 10)
+    name_regex_delete = optional(string, ".*")
+    name_regex_keep   = optional(string, null)
+    older_than        = optional(string, "90d")
+  })
+  default     = null
   description = "Set the image cleanup policy for this project"
 }
 
@@ -247,7 +283,7 @@ variable "forking_access_level" {
 variable "group_runners_enabled" {
   type        = bool
   default     = true
-  description = "enable group runners for this project"
+  description = "Enable group runners for this project"
 }
 
 variable "group_with_project_templates_id" {
@@ -321,6 +357,12 @@ variable "lfs_enabled" {
   description = "Enable LFS for the project"
 }
 
+variable "max_artifacts_size" {
+  type        = number
+  default     = null
+  description = "The maximum file size in megabytes for individual job artifacts"
+}
+
 variable "merge_commit_template" {
   type        = string
   default     = null
@@ -342,6 +384,18 @@ variable "merge_pipelines_enabled" {
   type        = bool
   default     = false
   description = "Enable or disable merge pipelines"
+}
+
+variable "merge_request_title_regex" {
+  type        = string
+  default     = null
+  description = "Set the regex pattern that merge request titles must match"
+}
+
+variable "merge_request_title_regex_description" {
+  type        = string
+  default     = null
+  description = "Set the description shown to users when a merge request title does not match merge_request_title_regex"
 }
 
 variable "merge_requests_access_level" {
@@ -371,24 +425,6 @@ variable "merge_trains_skip_train_allowed" {
   type        = bool
   default     = false
   description = "Allows merge train merge requests to be merged without waiting for pipelines to finish"
-}
-
-variable "mirror" {
-  type        = bool
-  default     = false
-  description = "Enable project pull mirror"
-}
-
-variable "mirror_overwrites_diverged_branches" {
-  type        = bool
-  default     = true
-  description = "Enable overwrite diverged branches for a mirrored project"
-}
-
-variable "mirror_trigger_builds" {
-  type        = bool
-  default     = false
-  description = "Enable trigger builds on pushes for a mirrored project"
 }
 
 variable "model_experiments_access_level" {
@@ -448,10 +484,15 @@ variable "only_allow_merge_if_pipeline_succeeds" {
   description = "Set to true if you want allow merges only if a pipeline succeeds"
 }
 
-variable "only_mirror_protected_branches" {
-  type        = bool
-  default     = true
-  description = "Enable only mirror protected branches for a mirrored project"
+variable "package_registry_access_level" {
+  type        = string
+  default     = null
+  description = "Set visibility of the package registry"
+
+  validation {
+    condition     = var.package_registry_access_level == null || contains(["disabled", "private", "enabled", "public"], var.package_registry_access_level)
+    error_message = "Valid values are disabled, private, enabled, public"
+  }
 }
 
 variable "packages_enabled" {
@@ -477,6 +518,24 @@ variable "path" {
   description = "The path of the repository"
 }
 
+variable "permanently_delete_on_destroy" {
+  type        = bool
+  default     = null
+  description = "Set to true to immediately permanently delete the project instead of scheduling a delete. Premium and Ultimate only"
+}
+
+variable "pre_receive_secret_detection_enabled" {
+  type        = bool
+  default     = null
+  description = "Whether Secret Push Detection is enabled. Requires GitLab Ultimate"
+}
+
+variable "prevent_merge_without_jira_issue" {
+  type        = bool
+  default     = null
+  description = "Set whether merge requests require an associated issue from Jira. Premium and Ultimate only"
+}
+
 variable "printing_merge_request_link_enabled" {
   type        = bool
   default     = true
@@ -490,8 +549,22 @@ variable "public_jobs" {
 }
 
 variable "push_rules" {
-  type        = list(string)
-  default     = []
+  type = object({
+    author_email_regex            = optional(string, null)
+    branch_name_regex             = optional(string, null)
+    commit_committer_check        = optional(bool, false)
+    commit_committer_name_check   = optional(bool, false)
+    commit_message_negative_regex = optional(string, null)
+    commit_message_regex          = optional(string, null)
+    deny_delete_tag               = optional(bool, false)
+    file_name_regex               = optional(string, null)
+    max_file_size                 = optional(number, 0)
+    member_check                  = optional(bool, false)
+    prevent_secrets               = optional(bool, false)
+    reject_non_dco_commits        = optional(bool, false)
+    reject_unsigned_commits       = optional(bool, false)
+  })
+  default     = null
   description = "Push rules for the project"
 }
 
@@ -529,11 +602,6 @@ variable "repository_storage" {
   description = "Which storage shard the repository is on"
 }
 
-variable "resource_group_default_process_mode" {
-  type        = string
-  default     = "unordered"
-  description = "The default resource group process mode for the project"
-}
 variable "request_access_enabled" {
   type        = bool
   default     = true
@@ -555,6 +623,12 @@ variable "resolve_outdated_diff_discussions" {
   type        = bool
   default     = false
   description = "Automatically resolve merge request diffs discussions on lines changed with a push"
+}
+
+variable "resource_group_default_process_mode" {
+  type        = string
+  default     = "unordered"
+  description = "The default resource group process mode for the project"
 }
 
 variable "security_and_compliance_access_level" {
@@ -600,11 +674,11 @@ variable "squash_commit_template" {
 variable "squash_option" {
   type        = string
   default     = "default_off"
-  description = "Squash commits when merge request"
+  description = "Squash commits when merge request is merged"
 
   validation {
     condition     = contains(["never", "always", "default_on", "default_off"], var.squash_option)
-    error_message = "Valid values are never, always, default_on, or default_off"
+    error_message = "Valid values are never, always, default_on, default_off"
   }
 }
 
@@ -627,9 +701,12 @@ variable "template_project_id" {
 }
 
 variable "timeouts" {
-  type        = list(string)
-  default     = []
-  description = "Timeout, in minutes"
+  type = object({
+    create = optional(string, null)
+    delete = optional(string, null)
+  })
+  default     = null
+  description = "Timeout configuration for create and delete operations"
 }
 
 variable "topics" {

@@ -12,7 +12,7 @@ specify the required variables and run the command `terraform init`.
 ```hcl
 module "gitlab_group" {
   source  = "gitlab.com/terraform-child-modules-48151/terraform-gitlab-group/local"
-  version = "1.1.4"
+  version = "2.0.0"
 
   name = "Example (group)"
   path = "example-group-48165"
@@ -20,7 +20,7 @@ module "gitlab_group" {
 
 module "gitlab_project" {
   source  = "gitlab.com/terraform-child-modules-48151/terraform-gitlab-project/local"
-  version = "1.1.5"
+  version = "2.0.0"
 
   name = "example-project"
 
@@ -33,15 +33,15 @@ module "gitlab_project" {
 ## Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
-| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | ~> 18.0 |
+| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | ~> 19.0 |
 
 ## Providers
 
 | Name | Version |
-|------|---------|
-| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | ~> 18.0 |
+| ---- | ------- |
+| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | ~> 19.0 |
 
 ## Modules
 
@@ -50,23 +50,26 @@ No modules.
 ## Resources
 
 | Name | Type |
-|------|------|
+| ---- | ---- |
 | [gitlab_project.this](https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project) | resource |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_allow_merge_on_skipped_pipeline"></a> [allow\_merge\_on\_skipped\_pipeline](#input\_allow\_merge\_on\_skipped\_pipeline) | Set to true if you want to treat skipped pipelines as if they finished with success. | `bool` | `false` | no |
+| ---- | ----------- | ---- | ------- | :------: |
+| <a name="input_allow_merge_on_skipped_pipeline"></a> [allow\_merge\_on\_skipped\_pipeline](#input\_allow\_merge\_on\_skipped\_pipeline) | Set to true if you want to treat skipped pipelines as if they finished with success | `bool` | `false` | no |
+| <a name="input_allow_pipeline_trigger_approve_deployment"></a> [allow\_pipeline\_trigger\_approve\_deployment](#input\_allow\_pipeline\_trigger\_approve\_deployment) | Set whether or not a pipeline triggerer is allowed to approve deployments. Premium and Ultimate only | `bool` | `null` | no |
 | <a name="input_analytics_access_level"></a> [analytics\_access\_level](#input\_analytics\_access\_level) | Set the analytics access level | `string` | `"enabled"` | no |
-| <a name="input_archive_on_destroy"></a> [archive\_on\_destroy](#input\_archive\_on\_destroy) | Set to true to archive the project instead of deleting on destroy | `bool` | `false` | no |
+| <a name="input_archive_on_destroy"></a> [archive\_on\_destroy](#input\_archive\_on\_destroy) | Set to true to archive the project instead of deleting on destroy | `bool` | `null` | no |
 | <a name="input_archived"></a> [archived](#input\_archived) | Whether the project is in read-only mode (archived) | `bool` | `false` | no |
 | <a name="input_auto_cancel_pending_pipelines"></a> [auto\_cancel\_pending\_pipelines](#input\_auto\_cancel\_pending\_pipelines) | Auto-cancel pending pipelines | `string` | `"enabled"` | no |
 | <a name="input_auto_devops_deploy_strategy"></a> [auto\_devops\_deploy\_strategy](#input\_auto\_devops\_deploy\_strategy) | Auto Deploy strategy | `string` | `"continuous"` | no |
 | <a name="input_auto_devops_enabled"></a> [auto\_devops\_enabled](#input\_auto\_devops\_enabled) | Enable Auto DevOps for this project | `bool` | `false` | no |
+| <a name="input_auto_duo_code_review_enabled"></a> [auto\_duo\_code\_review\_enabled](#input\_auto\_duo\_code\_review\_enabled) | Enable automatic reviews by GitLab Duo on merge requests. Ultimate only | `bool` | `null` | no |
 | <a name="input_autoclose_referenced_issues"></a> [autoclose\_referenced\_issues](#input\_autoclose\_referenced\_issues) | Set whether auto-closing referenced issues on default branch | `bool` | `true` | no |
 | <a name="input_avatar"></a> [avatar](#input\_avatar) | A local path to the avatar image to upload | `string` | `null` | no |
 | <a name="input_avatar_hash"></a> [avatar\_hash](#input\_avatar\_hash) | The hash of the avatar image | `string` | `null` | no |
+| <a name="input_branches"></a> [branches](#input\_branches) | Branches to fork (empty for all branches) | `string` | `null` | no |
 | <a name="input_build_git_strategy"></a> [build\_git\_strategy](#input\_build\_git\_strategy) | The Git strategy | `string` | `"fetch"` | no |
 | <a name="input_build_timeout"></a> [build\_timeout](#input\_build\_timeout) | The maximum amount of time, in seconds, that a job can run | `number` | `3600` | no |
 | <a name="input_builds_access_level"></a> [builds\_access\_level](#input\_builds\_access\_level) | Set the builds access level | `string` | `"enabled"` | no |
@@ -78,8 +81,9 @@ No modules.
 | <a name="input_ci_id_token_sub_claim_components"></a> [ci\_id\_token\_sub\_claim\_components](#input\_ci\_id\_token\_sub\_claim\_components) | Fields included in the sub claim of the ID Token | `list(string)` | ```[ "project_path", "ref_type", "ref" ]``` | no |
 | <a name="input_ci_pipeline_variables_minimum_override_role"></a> [ci\_pipeline\_variables\_minimum\_override\_role](#input\_ci\_pipeline\_variables\_minimum\_override\_role) | The minimum role required to set variables when running pipelines and jobs | `string` | `"developer"` | no |
 | <a name="input_ci_push_repository_for_job_token_allowed"></a> [ci\_push\_repository\_for\_job\_token\_allowed](#input\_ci\_push\_repository\_for\_job\_token\_allowed) | Allow Git push requests to your project repository that are authenticated with a CI/CD job token | `bool` | `true` | no |
+| <a name="input_ci_restrict_pipeline_cancellation_role"></a> [ci\_restrict\_pipeline\_cancellation\_role](#input\_ci\_restrict\_pipeline\_cancellation\_role) | The role required to cancel a pipeline or job. Premium and Ultimate only | `string` | `null` | no |
 | <a name="input_ci_separated_caches"></a> [ci\_separated\_caches](#input\_ci\_separated\_caches) | Use separate caches for protected branches | `bool` | `true` | no |
-| <a name="input_container_expiration_policy"></a> [container\_expiration\_policy](#input\_container\_expiration\_policy) | Set the image cleanup policy for this project | `list(string)` | `[]` | no |
+| <a name="input_container_expiration_policy"></a> [container\_expiration\_policy](#input\_container\_expiration\_policy) | Set the image cleanup policy for this project | ```object({ cadence = optional(string, "1d") enabled = optional(bool, false) keep_n = optional(number, 10) name_regex_delete = optional(string, ".*") name_regex_keep = optional(string, null) older_than = optional(string, "90d") })``` | `null` | no |
 | <a name="input_container_registry_access_level"></a> [container\_registry\_access\_level](#input\_container\_registry\_access\_level) | Set visibility of container registry, for this project | `string` | `"enabled"` | no |
 | <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | The default branch for the project | `string` | `"main"` | no |
 | <a name="input_description"></a> [description](#input\_description) | A description of the project | `string` | `null` | no |
@@ -89,7 +93,7 @@ No modules.
 | <a name="input_feature_flags_access_level"></a> [feature\_flags\_access\_level](#input\_feature\_flags\_access\_level) | Set the feature flags access level | `string` | `"enabled"` | no |
 | <a name="input_forked_from_project_id"></a> [forked\_from\_project\_id](#input\_forked\_from\_project\_id) | The ID of the project to fork | `number` | `null` | no |
 | <a name="input_forking_access_level"></a> [forking\_access\_level](#input\_forking\_access\_level) | Set the forking access level | `string` | `"enabled"` | no |
-| <a name="input_group_runners_enabled"></a> [group\_runners\_enabled](#input\_group\_runners\_enabled) | enable group runners for this project | `bool` | `true` | no |
+| <a name="input_group_runners_enabled"></a> [group\_runners\_enabled](#input\_group\_runners\_enabled) | Enable group runners for this project | `bool` | `true` | no |
 | <a name="input_group_with_project_templates_id"></a> [group\_with\_project\_templates\_id](#input\_group\_with\_project\_templates\_id) | For group-level custom templates, specifies ID of group from which all the custom project templates are sourced | `number` | `null` | no |
 | <a name="input_import_url"></a> [import\_url](#input\_import\_url) | Git URL to a repository to be imported | `string` | `null` | no |
 | <a name="input_import_url_password"></a> [import\_url\_password](#input\_import\_url\_password) | The password for the import\_url | `string` | `null` | no |
@@ -100,16 +104,16 @@ No modules.
 | <a name="input_issues_template"></a> [issues\_template](#input\_issues\_template) | Sets the template for new issues in the project | `string` | `null` | no |
 | <a name="input_keep_latest_artifact"></a> [keep\_latest\_artifact](#input\_keep\_latest\_artifact) | Disable or enable the ability to keep the latest artifact for this project | `bool` | `true` | no |
 | <a name="input_lfs_enabled"></a> [lfs\_enabled](#input\_lfs\_enabled) | Enable LFS for the project | `bool` | `true` | no |
+| <a name="input_max_artifacts_size"></a> [max\_artifacts\_size](#input\_max\_artifacts\_size) | The maximum file size in megabytes for individual job artifacts | `number` | `null` | no |
 | <a name="input_merge_commit_template"></a> [merge\_commit\_template](#input\_merge\_commit\_template) | Template used to create merge commit message in merge requests | `string` | `null` | no |
 | <a name="input_merge_method"></a> [merge\_method](#input\_merge\_method) | Set the merge method | `string` | `"merge"` | no |
 | <a name="input_merge_pipelines_enabled"></a> [merge\_pipelines\_enabled](#input\_merge\_pipelines\_enabled) | Enable or disable merge pipelines | `bool` | `false` | no |
+| <a name="input_merge_request_title_regex"></a> [merge\_request\_title\_regex](#input\_merge\_request\_title\_regex) | Set the regex pattern that merge request titles must match | `string` | `null` | no |
+| <a name="input_merge_request_title_regex_description"></a> [merge\_request\_title\_regex\_description](#input\_merge\_request\_title\_regex\_description) | Set the description shown to users when a merge request title does not match merge\_request\_title\_regex | `string` | `null` | no |
 | <a name="input_merge_requests_access_level"></a> [merge\_requests\_access\_level](#input\_merge\_requests\_access\_level) | Set the merge requests access level | `string` | `"enabled"` | no |
 | <a name="input_merge_requests_template"></a> [merge\_requests\_template](#input\_merge\_requests\_template) | Sets the template for new merge requests in the project | `string` | `null` | no |
 | <a name="input_merge_trains_enabled"></a> [merge\_trains\_enabled](#input\_merge\_trains\_enabled) | Enable or disable merge trains | `bool` | `false` | no |
 | <a name="input_merge_trains_skip_train_allowed"></a> [merge\_trains\_skip\_train\_allowed](#input\_merge\_trains\_skip\_train\_allowed) | Allows merge train merge requests to be merged without waiting for pipelines to finish | `bool` | `false` | no |
-| <a name="input_mirror"></a> [mirror](#input\_mirror) | Enable project pull mirror | `bool` | `false` | no |
-| <a name="input_mirror_overwrites_diverged_branches"></a> [mirror\_overwrites\_diverged\_branches](#input\_mirror\_overwrites\_diverged\_branches) | Enable overwrite diverged branches for a mirrored project | `bool` | `true` | no |
-| <a name="input_mirror_trigger_builds"></a> [mirror\_trigger\_builds](#input\_mirror\_trigger\_builds) | Enable trigger builds on pushes for a mirrored project | `bool` | `false` | no |
 | <a name="input_model_experiments_access_level"></a> [model\_experiments\_access\_level](#input\_model\_experiments\_access\_level) | Set visibility of machine learning model experiments | `string` | `"enabled"` | no |
 | <a name="input_model_registry_access_level"></a> [model\_registry\_access\_level](#input\_model\_registry\_access\_level) | Set visibility of machine learning model registry | `string` | `"enabled"` | no |
 | <a name="input_monitor_access_level"></a> [monitor\_access\_level](#input\_monitor\_access\_level) | Set the monitor access level | `string` | `"enabled"` | no |
@@ -118,13 +122,16 @@ No modules.
 | <a name="input_namespace_id"></a> [namespace\_id](#input\_namespace\_id) | The namespace (group or user) of the project | `number` | `null` | no |
 | <a name="input_only_allow_merge_if_all_discussions_are_resolved"></a> [only\_allow\_merge\_if\_all\_discussions\_are\_resolved](#input\_only\_allow\_merge\_if\_all\_discussions\_are\_resolved) | Set to true if you want allow merges only if all discussions are resolved | `bool` | `false` | no |
 | <a name="input_only_allow_merge_if_pipeline_succeeds"></a> [only\_allow\_merge\_if\_pipeline\_succeeds](#input\_only\_allow\_merge\_if\_pipeline\_succeeds) | Set to true if you want allow merges only if a pipeline succeeds | `bool` | `false` | no |
-| <a name="input_only_mirror_protected_branches"></a> [only\_mirror\_protected\_branches](#input\_only\_mirror\_protected\_branches) | Enable only mirror protected branches for a mirrored project | `bool` | `true` | no |
+| <a name="input_package_registry_access_level"></a> [package\_registry\_access\_level](#input\_package\_registry\_access\_level) | Set visibility of the package registry | `string` | `null` | no |
 | <a name="input_packages_enabled"></a> [packages\_enabled](#input\_packages\_enabled) | Enable packages repository for the project | `bool` | `true` | no |
 | <a name="input_pages_access_level"></a> [pages\_access\_level](#input\_pages\_access\_level) | Enable pages access control | `string` | `"private"` | no |
 | <a name="input_path"></a> [path](#input\_path) | The path of the repository | `string` | `null` | no |
+| <a name="input_permanently_delete_on_destroy"></a> [permanently\_delete\_on\_destroy](#input\_permanently\_delete\_on\_destroy) | Set to true to immediately permanently delete the project instead of scheduling a delete. Premium and Ultimate only | `bool` | `null` | no |
+| <a name="input_pre_receive_secret_detection_enabled"></a> [pre\_receive\_secret\_detection\_enabled](#input\_pre\_receive\_secret\_detection\_enabled) | Whether Secret Push Detection is enabled. Requires GitLab Ultimate | `bool` | `null` | no |
+| <a name="input_prevent_merge_without_jira_issue"></a> [prevent\_merge\_without\_jira\_issue](#input\_prevent\_merge\_without\_jira\_issue) | Set whether merge requests require an associated issue from Jira. Premium and Ultimate only | `bool` | `null` | no |
 | <a name="input_printing_merge_request_link_enabled"></a> [printing\_merge\_request\_link\_enabled](#input\_printing\_merge\_request\_link\_enabled) | Show link to create/view merge request when pushing from the command line | `bool` | `true` | no |
 | <a name="input_public_jobs"></a> [public\_jobs](#input\_public\_jobs) | If true, jobs can be viewed by non-project members | `bool` | `true` | no |
-| <a name="input_push_rules"></a> [push\_rules](#input\_push\_rules) | Push rules for the project | `list(string)` | `[]` | no |
+| <a name="input_push_rules"></a> [push\_rules](#input\_push\_rules) | Push rules for the project | ```object({ author_email_regex = optional(string, null) branch_name_regex = optional(string, null) commit_committer_check = optional(bool, false) commit_committer_name_check = optional(bool, false) commit_message_negative_regex = optional(string, null) commit_message_regex = optional(string, null) deny_delete_tag = optional(bool, false) file_name_regex = optional(string, null) max_file_size = optional(number, 0) member_check = optional(bool, false) prevent_secrets = optional(bool, false) reject_non_dco_commits = optional(bool, false) reject_unsigned_commits = optional(bool, false) })``` | `null` | no |
 | <a name="input_releases_access_level"></a> [releases\_access\_level](#input\_releases\_access\_level) | Set the releases access level | `string` | `"enabled"` | no |
 | <a name="input_remove_source_branch_after_merge"></a> [remove\_source\_branch\_after\_merge](#input\_remove\_source\_branch\_after\_merge) | Enable Delete source branch option by default for all new merge requests | `bool` | `true` | no |
 | <a name="input_repository_access_level"></a> [repository\_access\_level](#input\_repository\_access\_level) | Set the repository access level | `string` | `"enabled"` | no |
@@ -138,11 +145,11 @@ No modules.
 | <a name="input_skip_wait_for_default_branch_protection"></a> [skip\_wait\_for\_default\_branch\_protection](#input\_skip\_wait\_for\_default\_branch\_protection) | If true, the default behavior to wait for the default branch protection to be created is skipped | `bool` | `false` | no |
 | <a name="input_snippets_access_level"></a> [snippets\_access\_level](#input\_snippets\_access\_level) | Set the snippets access level | `string` | `"enabled"` | no |
 | <a name="input_squash_commit_template"></a> [squash\_commit\_template](#input\_squash\_commit\_template) | Template used to create squash commit message in merge requests | `string` | `null` | no |
-| <a name="input_squash_option"></a> [squash\_option](#input\_squash\_option) | Squash commits when merge request | `string` | `"default_off"` | no |
+| <a name="input_squash_option"></a> [squash\_option](#input\_squash\_option) | Squash commits when merge request is merged | `string` | `"default_off"` | no |
 | <a name="input_suggestion_commit_message"></a> [suggestion\_commit\_message](#input\_suggestion\_commit\_message) | The commit message used to apply merge request suggestions | `string` | `null` | no |
 | <a name="input_template_name"></a> [template\_name](#input\_template\_name) | When used without use\_custom\_template, name of a built-in project template | `string` | `null` | no |
 | <a name="input_template_project_id"></a> [template\_project\_id](#input\_template\_project\_id) | When used with use\_custom\_template, project ID of a custom project template | `number` | `null` | no |
-| <a name="input_timeouts"></a> [timeouts](#input\_timeouts) | Timeout, in minutes | `list(string)` | `[]` | no |
+| <a name="input_timeouts"></a> [timeouts](#input\_timeouts) | Timeout configuration for create and delete operations | ```object({ create = optional(string, null) delete = optional(string, null) })``` | `null` | no |
 | <a name="input_topics"></a> [topics](#input\_topics) | The list of topics for the project | `set(string)` | `[]` | no |
 | <a name="input_use_custom_template"></a> [use\_custom\_template](#input\_use\_custom\_template) | Use either custom instance or group (with group\_with\_project\_templates\_id) project template (enterprise edition) | `bool` | `false` | no |
 | <a name="input_visibility_level"></a> [visibility\_level](#input\_visibility\_level) | Set to public to create a public project | `string` | `"private"` | no |
@@ -151,7 +158,7 @@ No modules.
 ## Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_avatar_url"></a> [avatar\_url](#output\_avatar\_url) | The URL of the avatar image |
 | <a name="output_empty_repo"></a> [empty\_repo](#output\_empty\_repo) | Whether the project is empty |
 | <a name="output_http_url_to_repo"></a> [http\_url\_to\_repo](#output\_http\_url\_to\_repo) | URL that can be provided to git clone to clone the project |
